@@ -4,8 +4,26 @@ import router from './router'
 
 import './main.css'
 
-const app = createApp(App)
+const app2 = createApp(App)
 
-app.use(router)
+app2.use(router)
 
-app.mount('#app')
+app2.mount('#app')
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyC73oVAbqSAWb6iMbB_bdr_sXUNAdb0qyQ",
+  authDomain: "lang-exchange-2a4fc.firebaseapp.com",
+  projectId: "lang-exchange-2a4fc",
+  storageBucket: "lang-exchange-2a4fc.appspot.com",
+  messagingSenderId: "264989986369",
+  appId: "1:264989986369:web:5fb5c160b0e4565baa00c0"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
