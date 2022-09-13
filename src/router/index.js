@@ -18,12 +18,12 @@ const router = createRouter({
       component: () => import('../views/Admin.vue')
     },
     {
-      path: '/feed',
-      name: 'feed',
+      path: '/profile',
+      name: 'profile',
       // route level code-splitting
-      // this generates a separate chunk (Feed.[hash].js) for this route
+      // this generates a separate chunk (Profile.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/Feed.vue')
+      component: () => import('../views/Profile.vue')
     },
     {
       path: '/sign-in',

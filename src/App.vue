@@ -35,7 +35,7 @@ const handleSignOut = () => {
 		<nav>
 			<RouterLink to="/">Home</RouterLink>
 			<RouterLink to="/admin" v-if="isLogggedIn && isAdmin">Admin</RouterLink>
-			<RouterLink to="/feed">Feed</RouterLink>
+			<RouterLink to="/profile" v-if="isLoggedIn">My Profile</RouterLink>
 			<RouterLink to="/sign-in" v-if="!isLoggedIn">Sign In</RouterLink>
 			<RouterLink to="/register" v-if="!isLoggedIn">Register</RouterLink>
 			<button @click="handleSignOut" v-if="isLoggedIn">Sign Out</button>
