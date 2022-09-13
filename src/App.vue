@@ -45,7 +45,7 @@ const handleSignOut = () => {
 	<RouterView />
 
 	<footer>
-
+		<p>Thank you for using my site. See my <a href="https://github.com/hugolindfors2">GitHub</a> or reach me at <a href="mailto:hugo.lindfors2@elev.ga.ntig.se">hugo.lindfors2@elev.ga.ntig.se</a> for more.</p>
 	</footer>
 </template>
 

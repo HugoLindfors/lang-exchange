@@ -2,7 +2,6 @@
 @import "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css";
 
 /* color palette from <https://github.com/vuejs/theme> */
-/* --
 :root {
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;
@@ -26,7 +25,6 @@
 }
 
 /* semantic color variables for this project */
-/* --
 :root {
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
@@ -111,4 +109,3 @@ a,
     padding: 0 2rem;
   }
 }
-*/
