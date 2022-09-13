@@ -19,7 +19,7 @@ const register = () => { // register-method registers new user with email and pa
 
             console.log(auth.currentUser)
 
-            router.push('/feed') // redirect to the feed-page
+            router.push('/') // redirect to the feed-page
         })
         .catch((error) => {
             console.log(`ERROR: ${error.code}`);
@@ -31,7 +31,7 @@ const signInWithGoogle = () => {
     signInWithPopup(getAuth(), provider)
         .then((result) => {
             console.log(result.user);
-            router.push('/feed');
+            router.push('/');
         })
         .catch((error) => {
             // handle error

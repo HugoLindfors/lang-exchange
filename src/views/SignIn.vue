@@ -20,7 +20,7 @@ const register = () => { // register-method logs in user with email and password
 
             console.log(auth.currentUser)
 
-            router.push('/feed') // redirect to the feed-page
+            router.push('/') // redirect to the feed-page
         })
         .catch((error) => {
             console.log(`ERROR: ${error.code}`);
@@ -48,7 +48,7 @@ const signInWithGoogle = () => {
     signInWithPopup(getAuth(), provider)
         .then((result) => {
             console.log(result.user);
-            router.push('/feed');
+            router.push('/');
         })
         .catch((error) => {
             // handle error
@@ -56,14 +56,14 @@ const signInWithGoogle = () => {
 };
 </script>
     
-    <template>
-        <div class="register">
-            <h1>Sign in</h1>
-            <p><input type="text" name="email" id="email" placeholder="Email" v-model="email"></p> <!-- email -->
-            <p><input type="password" name="password" id="password" placeholder="Password" v-model="password"></p>
-            <!-- password -->
-            <p v-if="errMsg">{{errMsg}}</p>
-            <p><button @click="register">Submit</button></p> <!-- submit -->
-            <p><button @click="signInWithGoogle">Sign in with Google</button></p> <!-- sign in with google -->
-        </div>
-    </template>
+<template>
+    <div class="register">
+        <h1>Sign in</h1>
+        <p><input type="text" name="email" id="email" placeholder="Email" v-model="email"></p> <!-- email -->
+        <p><input type="password" name="password" id="password" placeholder="Password" v-model="password"></p>
+        <!-- password -->
+        <p v-if="errMsg">{{errMsg}}</p>
+        <p><button @click="register">Submit</button></p> <!-- submit -->
+        <p><button @click="signInWithGoogle">Sign in with Google</button></p> <!-- sign in with google -->
+    </div>
+</template>
