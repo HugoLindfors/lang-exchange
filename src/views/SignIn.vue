@@ -6,9 +6,9 @@ const email = ref("");
 const password = ref("");
 const errMsg = ref(); // ERROR MESSAGE 
 const router = useRouter() // get a reference to our vue router
-const auth = getAuth(); // from firebase/auth
 const register = () => { // register-method logs in user with email and password
     // need .value because ref()
+    const auth = getAuth(); // from firebase/auth
     signInWithEmailAndPassword(getAuth(), email.value, password.value)
         .then((data) => {
             console.log("Successfully registered new account");
