@@ -26,5 +26,29 @@ export const store = reactive({
                 },
             ]
         },
+        {
+            id: "Cs4i1KKHGgaRBHFVLYGo4iHhAQ22",
+            username: "sebastian.jensen",
+            displayName: 'Sebastian "Sebbe" Jensen',
+            userscore: 1,
+            languages: [
+                {
+                    name: "swedish",
+                    lvl: "native"
+                },
+                {
+                    name: "english",
+                    lvl: "advanced"
+                },
+                {
+                    name: "japanese",
+                    lvl: "intermediate"
+                },
+                {
+                    name: "german",
+                    lvl: "beginner"
+                },
+            ]
+        },
     ]
 })
