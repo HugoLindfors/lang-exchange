@@ -6,6 +6,8 @@ import router from './router';
 
 const isLoggedIn = ref(false);
 
+let isAdmin = false;
+
 let auth;
 onMounted(() => {
 	auth = getAuth();
@@ -32,7 +34,7 @@ const handleSignOut = () => {
 	<header>
 		<nav>
 			<RouterLink to="/">Home</RouterLink>
-			<RouterLink to="/admin">Admin</RouterLink>
+			<RouterLink to="/admin" v-if="isLogggedIn && isAdmin">Admin</RouterLink>
 			<RouterLink to="/feed">Feed</RouterLink>
 			<RouterLink to="/sign-in" v-if="!isLoggedIn">Sign In</RouterLink>
 			<RouterLink to="/register" v-if="!isLoggedIn">Register</RouterLink>
