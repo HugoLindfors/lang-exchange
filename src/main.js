@@ -10,9 +10,12 @@ app2.use(router)
 
 app2.mount('#app')
 
+// FireBase 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+// TODO: Add SDKs for FireBase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -25,5 +28,8 @@ const firebaseConfig = {
   appId: "1:264989986369:web:5fb5c160b0e4565baa00c0"
 };
 
-// Initialize Firebase
+// Initialize FireBase
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
