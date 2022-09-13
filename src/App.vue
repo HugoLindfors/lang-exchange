@@ -38,7 +38,7 @@ const handleSignOut = () => {
 			<RouterLink to="/profile" v-if="isLoggedIn" class="router-link">My Profile</RouterLink>
 			<RouterLink to="/sign-in" v-if="!isLoggedIn" class="router-link right sign-in">Sign In</RouterLink>
 			<RouterLink to="/register" v-if="!isLoggedIn" class="router-link right sign-in">Register</RouterLink>
-			<button @click="handleSignOut" v-if="isLoggedIn" class="router-link">Sign Out</button>
+			<button @click="handleSignOut" v-if="isLoggedIn" class="router-link-button">Sign Out</button>
 		</nav>
 	</header>
 
@@ -59,6 +59,12 @@ const handleSignOut = () => {
 	.navbar .router-link {
 		color: white;
 		text-decoration: none;
+	}
+
+	.navbar .router-link-button {
+		border: none;
+		background-color: transparent;
+		color: inherit;
 	}
 
 	.router-view {
