@@ -64,6 +64,6 @@ const signInWithGoogle = () => {
         <!-- password -->
         <p v-if="errMsg">{{errMsg}}</p>
         <p><button @click="register">Submit</button></p> <!-- submit -->
-        <p><button @click="signInWithGoogle">Sign in with Google</button></p> <!-- sign in with google -->
+        <p><button @click="signInWithGoogle"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg">Sign in with Google</button></p> <!-- sign in with google -->
     </div>
 </template>

@@ -46,6 +46,6 @@ const signInWithGoogle = () => {
         <p><input type="password" name="password" id="password" placeholder="Password" v-model="password"></p>
         <!-- password -->
         <p><button @click="register">Submit</button></p> <!-- submit -->
-        <p><button @click="signInWithGoogle">Sign in with Google</button></p> <!-- sign in with google -->
+        <p><button @click="signInWithGoogle"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg">Sign in with Google</button></p> <!-- sign in with google -->
     </div>
 </template>
