@@ -5,12 +5,16 @@ import { useRouter } from 'vue-router'; // import router from vue-router
 const email = ref("");
 const password = ref("");
 const router = useRouter() // get a reference to our vue router
+const auth = getAuth(); // from firebase/auth
 const register = () => { // register-method registers new user with email and password
     // need .value because ref()
     createUserWithEmailAndPassword(getAuth(), email.value, password.value)
         .then((data) => {
             console.log("Successfully registered new account");
-            router.push('/feed')
+
+            console.log(auth.currentUser)
+
+            router.push('/feed') // redirect to the feed-page
         })
         .catch((error) => {
             console.log(`ERROR: ${error.code}`);
