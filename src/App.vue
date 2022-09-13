@@ -34,8 +34,8 @@ const handleSignOut = () => {
 			<RouterLink to="/">Home</RouterLink>
 			<RouterLink to="/admin">Admin</RouterLink>
 			<RouterLink to="/feed">Feed</RouterLink>
-			<RouterLink to="/sign-in">Sign In</RouterLink>
-			<RouterLink to="/register">Register</RouterLink>
+			<RouterLink to="/sign-in" v-if="!isLoggedIn">Sign In</RouterLink>
+			<RouterLink to="/register" v-if="!isLoggedIn">Register</RouterLink>
 			<button @click="handleSignOut" v-if="isLoggedIn">Sign Out</button>
 		</nav>
 	</header>
