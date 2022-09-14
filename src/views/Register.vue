@@ -41,11 +41,11 @@ const signInWithGoogle = () => {
 
 <template>
     <div class="register">
-        <h1>Create an account</h1>
-        <p><input type="text" name="email" id="email" placeholder="Email" v-model="email"></p> <!-- email -->
-        <p><input type="password" name="password" id="password" placeholder="Password" v-model="password"></p>
+        <h1></h1>
+        <p><input type="text" name="email" id="email" placeholder="Email" v-model="email" class="sign-in-element"></p> <!-- email -->
+        <p><input type="password" name="password" id="password" placeholder="Password" v-model="password" class="sign-in-element"></p>
         <!-- password -->
-        <p><button @click="register">Submit</button></p> <!-- submit -->
-        <p><button @click="signInWithGoogle"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg">Sign in with Google</button></p> <!-- sign in with google -->
+        <p><button @click="register" class="sign-in-element">Register an account</button></p> <!-- submit -->
+        <p><button @click="signInWithGoogle" class="sign-in-element sign-in-with-google-button"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="svg">Sign in with Google</button></p> <!-- sign in with google -->
     </div>
 </template>
