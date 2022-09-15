@@ -6,7 +6,7 @@ export const store = reactive({
             id: "I5Cq4hWhrfYwhqFYoVIBRPnVTUx1",
             username: "hugo.lindfors",
             displayName: "Hugo Lindfors",
-            userscore: 1,
+            score: 1,
             languages: [
                 {
                     name: "swedish",
@@ -29,8 +29,8 @@ export const store = reactive({
         {
             id: "Cs4i1KKHGgaRBHFVLYGo4iHhAQ22",
             username: "sebastian.jensen",
-            displayName: 'Sebastian "Sebbe" Jensen',
-            userscore: 1,
+            displayName: 'Sebastian Jensen',
+            score: 1,
             languages: [
                 {
                     name: "swedish",
