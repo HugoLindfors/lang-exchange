@@ -6,7 +6,7 @@ export const store = reactive({
             id: "I5Cq4hWhrfYwhqFYoVIBRPnVTUx1",
             username: "hugo.lindfors",
             displayName: "Hugo Lindfors",
-            score: 1,
+            score: -1,
             languages: [
                 {
                     name: "swedish",
@@ -33,7 +33,7 @@ export const store = reactive({
             score: 1,
             languages: [
                 {
-                    name: "swedish",
+                    name: "swedish/svenska",
                     lvl: "native"
                 },
                 {
@@ -41,14 +41,38 @@ export const store = reactive({
                     lvl: "advanced"
                 },
                 {
-                    name: "japanese",
+                    name: "japanese/日本語",
                     lvl: "intermediate"
                 },
                 {
-                    name: "german",
+                    name: "german/deutsch",
                     lvl: "beginner"
                 },
             ]
         },
-    ]
+        {
+            id: "I5Cq4hWhrfYwhqFYoVIBRPnVTUx1",
+            username: "hugo.lindfors.2",
+            displayName: "Hugo Lindfors",
+            score: -1,
+            languages: [
+                {
+                    name: "swedish/svenska",
+                    lvl: "native"
+                },
+                {
+                    name: "english",
+                    lvl: "advanced"
+                },
+                {
+                    name: "finnish/suomi",
+                    lvl: "intermediate"
+                },
+                {
+                    name: "german/deutsch",
+                    lvl: "intermediate"
+                },
+            ]
+        },
+    ],
 })

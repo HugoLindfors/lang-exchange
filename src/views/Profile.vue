@@ -20,4 +20,13 @@
         {{language.name.toLocaleUpperCase()}}
     </div>
     <h5>CURRENTLY LEARNING / ALSO KNOWS</h5>
+    <div v-for="language in store.users[0].languages.filter((language) => language.lvl === 'advanced' || language.lvl === 'proficient')">
+        {{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})
+    </div>
+    <div v-for="language in store.users[0].languages.filter((language) => language.lvl === 'intermediate' || language.lvl === 'upper_intermediate')">
+        {{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})
+    </div>
+    <div v-for="language in store.users[0].languages.filter((language) => language.lvl === 'pre-intermediate' || language.lvl === 'beginner')">
+        {{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})
+    </div>
 </template>

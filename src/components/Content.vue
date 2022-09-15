@@ -31,7 +31,7 @@ import { store } from './store';
                 <th v-if="showNative===true">
                     NATIVE LANGUAGE(S)
                 </th>
-                <th>
+                <th v-if="showAdvanced || showIntermediate || showBeginner">
                     CURRENTLY LEARNING / ALSO KNOWS
                 </th>
             </tr>
@@ -47,13 +47,15 @@ import { store } from './store';
                     </div>
                 </td>
                 <td>
-                    {{user.score}}
+                    <span v-if="!hideNegativeScore || user.score >= 0">{{user.score}}</span>
                 </td>
-                <td v-if="showNative===true">
+                <td v-if="showNative">
                     <div v-for="language in user.languages.filter((language) => language.lvl === 'native')">{{language.name.toUpperCase()}}</div>
                 </td>
-                <td>
-                    <div v-for="language in user.languages.filter((language) => language.lvl !== 'native')">{{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
+                <td v-if="showAdvanced || showIntermediate || showBeginner">
+                    <div v-if="showAdvanced" v-for="language in user.languages.filter((language) => (language.lvl === 'advanced' || language.lvl === 'proficient'))">{{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
+                    <div v-if="showIntermediate" v-for="language in user.languages.filter((language) => (language.lvl === 'intermediate' || language.lvl === 'upper_intermediate'))">{{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
+                    <div v-if="showBeginner" v-for="language in user.languages.filter((language) => (language.lvl === 'pre-intermediate' || language.lvl === 'beginner'))">{{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
                 </td>
             </tr>
         </tbody>
@@ -70,26 +72,29 @@ import { store } from './store';
                 store,
                 searchbarInput: null,
                 showNative: true,
+                showAdvanced: true,
+                showIntermediate: true,
+                showBeginner: true,
                 hideNegativeScore: false,
             }
         }, methods: {
             Search() { //SÖKMETODEN
-                    let filter = this.searchbarInput.toUpperCase();
-                    console.log(filter);
-                    let tr = document.getElementsByTagName("tr"); //TR ÄR EN ARRAY
-                    for (let i = 1; i < tr.length; i++) {
-                        for (let j = 0; j < 4; j++) {
-                            console.log(tr[i].getElementsByTagName("td")[j]);
-                            let td = tr[i].getElementsByTagName("td")[j];
-                            let txtValue = td.textContent || td.innerText;
-                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                            } else {
-                            tr[i].style.display = "none";
-                            }
+                let filter = this.searchbarInput.toUpperCase();
+                console.log(filter);
+                let tr = document.getElementsByTagName("tr"); //TR ÄR EN ARRAY
+                for (let i = 1; i < tr.length; i++) {
+                    for (let j = 0; j < 4; j++) {
+                        console.log(tr[i].getElementsByTagName("td")[j]);
+                        let td = tr[i].getElementsByTagName("td")[j];
+                        let txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        } else {
+                        tr[i].style.display = "none";
                         }
                     }
-                },
+                }
+            },
         }
     }
 </script>
