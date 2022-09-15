@@ -14,11 +14,13 @@
     export default {
         data() {
             return {
-                Search() { //SÖKMETODEN
-                    console.log(this.searchbarInput);
+                searchbarInput: null,
+            }
+        }, methods: {
+            Search() { //SÖKMETODEN
                     let filter = this.searchbarInput.toUpperCase();
                     console.log(filter);
-
+                    /*
                     let table = document.getElementById("table");
                     let tr = document.getElementsByTagName("tr"); //TR ÄR EN ARRAY
                     for (let i = 1; i < tr.length; i++) {
@@ -32,8 +34,8 @@
                             }
                         }
                     }
+                    */
                 },
-            }
         }
     }
 </script>
