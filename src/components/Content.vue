@@ -10,10 +10,10 @@ import { store } from './store';
     </div>
     <div class="filter">
         <div class="lvl-filter">
-            <input type="checkbox" name="native" v-model="showNative" checked /> NATIVE <!--Follows the standard scale of linguistics: A0 - total beginner, A1 - beginner, A2 - pre-intermediate, B1 - intermediate, B2 - upper intermediate, C1 - advanced, C2 - proficient and native -->
-            <input type="checkbox" name="c" v-model="showAdvanced" checked /> ADVANCED
-            <input type="checkbox" name="b" v-model="showIntermediate" checked /> INTERMEDIATE
-            <input type="checkbox" name="a" v-model="showBeginner" checked /> BEGINNER
+            <input type="checkbox" name="showNative" v-model="showNative" checked /> NATIVE <!--Follows the standard scale of linguistics: A0 - total beginner, A1 - beginner, A2 - pre-intermediate, B1 - intermediate, B2 - upper intermediate, C1 - advanced, C2 - proficient and native -->
+            <input type="checkbox" name="showAdvanced" v-model="showAdvanced" checked /> ADVANCED
+            <input type="checkbox" name="showIntermediate" v-model="showIntermediate" checked /> INTERMEDIATE
+            <input type="checkbox" name="showNative" v-model="showBeginner" checked /> BEGINNER
         </div>
         <div class="score-filter">
             <input type="checkbox" v-model="hideNegativeScore" /> HIDE NEGATIVE SCORES
@@ -28,7 +28,7 @@ import { store } from './store';
                 <th>
                     SCORE
                 </th>
-                <th>
+                <th v-if="showNative===true">
                     NATIVE LANGUAGE(S)
                 </th>
                 <th>
@@ -49,7 +49,7 @@ import { store } from './store';
                 <td>
                     {{user.score}}
                 </td>
-                <td>
+                <td v-if="showNative===true">
                     <div v-for="language in user.languages.filter((language) => language.lvl === 'native')">{{language.name.toUpperCase()}}</div>
                 </td>
                 <td>
@@ -69,15 +69,17 @@ import { store } from './store';
             return {
                 store,
                 searchbarInput: null,
+                showNative: true,
+                hideNegativeScore: false,
             }
         }, methods: {
             Search() { //SÖKMETODEN
                     let filter = this.searchbarInput.toUpperCase();
                     console.log(filter);
-                    let table = document.getElementById("table");
                     let tr = document.getElementsByTagName("tr"); //TR ÄR EN ARRAY
                     for (let i = 1; i < tr.length; i++) {
                         for (let j = 0; j < 4; j++) {
+                            console.log(tr[i].getElementsByTagName("td")[j]);
                             let td = tr[i].getElementsByTagName("td")[j];
                             let txtValue = td.textContent || td.innerText;
                             if (txtValue.toUpperCase().indexOf(filter) > -1) {
