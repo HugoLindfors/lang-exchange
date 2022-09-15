@@ -7,6 +7,7 @@
         data() {
             return {
                 store,
+                newUsername: "username"
             }
         },
     }

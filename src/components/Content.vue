@@ -64,9 +64,8 @@ import { store } from './store';
 
 <script>
     export default {
-        props: {
-            
-        },
+        name: "newUsername",
+        props: { newUsername: String },
         data() {
             return {
                 store,
