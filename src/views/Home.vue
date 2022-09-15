@@ -1,13 +1,9 @@
-<script setup> //lang="js"
-import Search from '../components/Search.vue';
-import Filter from '../components/Filter.vue';
-import List from '../components/List.vue';
+<script setup>
+import Content from '../components/Content.vue';
 </script>
 
 <template>
     <main>
-        <Search></Search>
-        <Filter></Filter>
-        <List></List>
+        <Content></Content>
     </main>
 </template>
