@@ -55,10 +55,22 @@ const signInWithGoogle = () => {
         });
 };
 </script>
+<script>
+    export default {
+        data() {
+            return {
+
+            }
+        }, methods: {
+
+        }
+    }
+</script>
     
 <template>
     <div class="register">
-        <h1></h1>
+        <h1>Sign into account</h1>
+        <p>Don't have an account? <a @click="router.push('/register')">Register</a></p>
         <p><input type="text" name="email" id="email" placeholder="Email" v-model="email" class="sign-in-element"></p> <!-- email -->
         <p><input type="password" name="password" id="password" placeholder="Password" v-model="password" class="sign-in-element"></p>
         <!-- password -->
