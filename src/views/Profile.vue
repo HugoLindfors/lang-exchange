@@ -1,17 +1,21 @@
 <script setup>
-    import { store } from '../components/store';
-    </script>
+import { store } from '../components/store';
+import { useRouter } from 'vue-router'; // import router from vue-router
+</script>
     
-    <script>
-    export default {
-        data() {
-            return {
-                store,
-                newUsername: "username"
-            }
-        },
+<script>
+export default {
+    data() {
+        return {
+            store,
+            newUsername: "username"
+        }
+    },
+    methods: {
+        Push: (pushMe) => {router.push(pushMe)}
     }
-    </script>
+}
+</script>
 
 <template>
     <h1>MODIFY MY PROFILE</h1>
@@ -30,4 +34,5 @@
     <div v-for="language in store.users[0].languages.filter((language) => language.lvl === 'pre-intermediate' || language.lvl === 'beginner')">
         {{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})
     </div>
+    <button @click="Push('/add-language')"> Add Language </button>
 </template>

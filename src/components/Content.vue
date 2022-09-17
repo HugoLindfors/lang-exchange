@@ -10,10 +10,10 @@ import { store } from './store';
     </div>
     <div class="filter">
         <div class="lvl-filter">
-            <input type="checkbox" name="showNative" v-model="showNative" checked /> NATIVE <!--Follows the standard scale of linguistics: A0 - total beginner, A1 - beginner, A2 - pre-intermediate, B1 - intermediate, B2 - upper intermediate, C1 - advanced, C2 - proficient and native -->
-            <input type="checkbox" name="showAdvanced" v-model="showAdvanced" checked /> ADVANCED
-            <input type="checkbox" name="showIntermediate" v-model="showIntermediate" checked /> INTERMEDIATE
-            <input type="checkbox" name="showNative" v-model="showBeginner" checked /> BEGINNER
+            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('native', showNative)" name="showNative" v-model="showNative" checked /> NATIVE <!--Follows the standard scale of linguistics: A0 - total beginner, A1 - beginner, A2 - pre-intermediate, B1 - intermediate, B2 - upper intermediate, C1 - advanced, C2 - proficient and native -->
+            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('advanced', showAdvanced)" name="showAdvanced" v-model="showAdvanced" checked /> ADVANCED
+            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('intermediate', showIntermediate)" name="showIntermediate" v-model="showIntermediate" checked /> INTERMEDIATE
+            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('beginner', showBeginner)" name="showNative" v-model="showBeginner" checked /> BEGINNER
         </div>
         <div class="score-filter">
             <input type="checkbox" v-model="hideNegativeScore" /> HIDE NEGATIVE SCORES
@@ -28,7 +28,7 @@ import { store } from './store';
                 <th>
                     SCORE
                 </th>
-                <th v-if="showNative===true">
+                <th v-if="showNative">
                     NATIVE LANGUAGE(S)
                 </th>
                 <th v-if="showAdvanced || showIntermediate || showBeginner">
@@ -37,7 +37,7 @@ import { store } from './store';
             </tr>
         </thead>
         <tbody id="table-body" class="table-body">
-            <tr v-for="user in store.users" class="table-row table-body-row">
+            <tr v-for="user in filteredUsers" class="table-row table-body-row">
                 <td>
                     <div>
                         {{user.displayName.toLocaleUpperCase()}}    
@@ -75,6 +75,7 @@ import { store } from './store';
                 showIntermediate: true,
                 showBeginner: true,
                 hideNegativeScore: false,
+                filteredUsers: [...store.users]
             }
         }, methods: {
             Search() { //SÖKMETODEN
@@ -94,6 +95,9 @@ import { store } from './store';
                     }
                 }
             },
+            DisplayLanguageGrouping(input, state) {
+                this.filteredUsers.languages.filter(language => language.lvl === input)
+            }
         }
     }
 </script>

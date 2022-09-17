@@ -41,6 +41,14 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/Register.vue')
     },
+    {
+      path: '/add-language',
+      name: 'add-language',
+      // route level code-splitting
+      // this generates a separate chunk (AddLanguage.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/AddLanguage.vue')
+    },
   ]
 })
 
