@@ -78,10 +78,10 @@ import { store } from './store';
                 filteredUsers: [...store.users]
             }
         }, methods: {
-            Search() { //SÖKMETODEN
+            Search() { // sök-metoden
                 let filter = this.searchbarInput.toUpperCase();
                 console.log(filter);
-                let tr = document.getElementsByTagName("tr"); //TR ÄR EN ARRAY
+                let tr = document.getElementsByTagName("tr"); // tr är en array
                 for (let i = 1; i < tr.length; i++) {
                     for (let j = 0; j < 4; j++) {
                         console.log(tr[i].getElementsByTagName("td")[j]);
@@ -89,6 +89,7 @@ import { store } from './store';
                         let txtValue = td.textContent || td.innerText;
                         if (txtValue.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = "";
+                        break;
                         } else {
                         tr[i].style.display = "none";
                         }

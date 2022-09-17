@@ -9,7 +9,7 @@ export const store = reactive({
             score: -1,
             languages: [
                 {
-                    name: "swedish",
+                    name: "swedish/svenska",
                     lvl: "native"
                 },
                 {
