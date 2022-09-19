@@ -44,7 +44,7 @@ const handleSignOut = () => {
 	<RouterView class="router-view" />
 
 	<footer>
-		<p>Thank you for using my site. See my <a href="https://github.com/hugolindfors2">GitHub</a> or reach me at <a href="mailto:hugo.lindfors2@elev.ga.ntig.se">hugo.lindfors2@elev.ga.ntig.se</a> for more.</p>
+		<p>Thank you for using my site. See my <a href="https://github.com/hugolindfors2">GitHub</a> or reach me at <a href="mailto:hugo.lindfors2@elev.ga.ntig.se">hugo.lindfors2@elev.ga.ntig.se</a> for more. Pro tip, click the table headings to sort column!</p>
 	</footer>
 </template>
 
@@ -53,6 +53,8 @@ const handleSignOut = () => {
 		background-color: #389683;
 		color: white;
 		height: 5vh;
+		width: 100%;
+		min-width: 280px;
 	}
 
 	.navbar .router-link {

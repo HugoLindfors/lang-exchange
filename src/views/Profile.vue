@@ -1,6 +1,8 @@
 <script setup>
 import { store } from '../components/store';
 import { useRouter } from 'vue-router'; // import router from vue-router
+
+const router = useRouter(); // get a reference to our vue router
 </script>
     
 <script>
@@ -8,11 +10,15 @@ export default {
     data() {
         return {
             store,
-            newUsername: "username"
+            newUsername: "username",
+            push: (pushMe) => {
+                alert("push");
+                router.push(pushMe)
+            },
         }
     },
     methods: {
-        Push: (pushMe) => {router.push(pushMe)}
+
     }
 }
 </script>
@@ -34,5 +40,5 @@ export default {
     <div v-for="language in store.users[0].languages.filter((language) => language.lvl === 'pre-intermediate' || language.lvl === 'beginner')">
         {{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})
     </div>
-    <button @click="Push('/add-language')"> Add Language </button>
+    <button @click="push('/add-language')"> Add Language </button>
 </template>

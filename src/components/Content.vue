@@ -5,7 +5,7 @@ import { store } from './store';
 <template>
     <div class="search">
         <div class="search-bar-container">
-            <input type="text" @keyup="Search()" v-model="searchbarInput" class="search-bar" />
+            <input type="text" @keyup="Search()" v-model="searchbarInput" class="search-bar" placeholder="Checks if row includes substring" />
         </div>
     </div>
     <div class="filter">
@@ -22,22 +22,23 @@ import { store } from './store';
     <table id="table" class="table">
         <thead id="table-head" class="table-head">
             <tr id="table-head-row" class="table-row table-head-row">
-                <th>
+                <th @click="SortUsersByUsername()">
                    NAME 
                 </th>
-                <th>
+                <th @click="SortUsersByScore()">
                     SCORE
                 </th>
-                <th v-if="showNative">
+                <th v-if="showNative" class="d-none d-md-block">
                     NATIVE LANGUAGE(S)
                 </th>
                 <th v-if="showAdvanced || showIntermediate || showBeginner">
-                    CURRENTLY LEARNING / ALSO KNOWS
+                    <span class="d-none d-md-block">CURRENTLY LEARNING / ALSO KNOWS</span>
+                    <span class="d-sm-block d-md-none">LANGUAGES</span>
                 </th>
             </tr>
         </thead>
         <tbody id="table-body" class="table-body">
-            <tr v-for="user in filteredUsers" class="table-row table-body-row">
+            <tr v-for="user in store.users" class="table-row table-body-row">
                 <td>
                     <div>
                         {{user.displayName.toLocaleUpperCase()}}    
@@ -47,12 +48,13 @@ import { store } from './store';
                     </div>
                 </td>
                 <td>
-                    <span v-if="!hideNegativeScore || user.score >= 0">{{user.score}}</span>
+                    <span v-if="!hideNegativeScore || user.score >= 0"><span>{{user.score}}</span><span><div><button @click="modifyScore(user, 'add')">+</button></div><div><button @click="modifyScore(user, 'subtract')">–</button></div></span></span>
                 </td>
-                <td v-if="showNative">
+                <td v-if="showNative" class="d-none d-md-block">
                     <div v-for="language in user.languages.filter((language) => language.lvl === 'native')">{{language.name.toUpperCase()}}</div>
                 </td>
                 <td v-if="showAdvanced || showIntermediate || showBeginner">
+                    <div v-if="showNative" v-for="language in user.languages.filter((language) => language.lvl === 'native')" class="d-sm-block d-md-none">{{language.name.toUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
                     <div v-if="showAdvanced" v-for="language in user.languages.filter((language) => (language.lvl === 'advanced' || language.lvl === 'proficient'))">{{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
                     <div v-if="showIntermediate" v-for="language in user.languages.filter((language) => (language.lvl === 'intermediate' || language.lvl === 'upper_intermediate'))">{{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
                     <div v-if="showBeginner" v-for="language in user.languages.filter((language) => (language.lvl === 'pre-intermediate' || language.lvl === 'beginner'))">{{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
@@ -64,18 +66,22 @@ import { store } from './store';
 
 <script>
     export default {
-        name: "newUsername",
-        props: { newUsername: String },
         data() {
             return {
                 store,
+                isSortedByUsername: false,
+                isReverseSortedByUsername: false,
                 searchbarInput: null,
                 showNative: true,
                 showAdvanced: true,
                 showIntermediate: true,
                 showBeginner: true,
                 hideNegativeScore: false,
-                filteredUsers: [...store.users]
+                filteredUsers: [...store.users],
+                sortedUsers: [...store.users],
+                copyOfUsers: [...store.users],
+                isSortedByScore: false,
+                isReverseSortedByScore: false,
             }
         }, methods: {
             Search() { // sök-metoden
@@ -96,8 +102,69 @@ import { store } from './store';
                     }
                 }
             },
-            DisplayLanguageGrouping(input, state) {
+
+            DisplayLanguageGrouping(input) {
                 this.filteredUsers.languages.filter(language => language.lvl === input)
+            },
+
+            SortUsersByUsername() {
+                if (!this.isSortedByUsername) {
+                    store.users.sort((a, b) => a.username.localeCompare(b.username));
+                    this.isSortedByUsername = true;
+                }
+
+                else if (!this.isReverseSortedByUsername) {
+                    store.users.sort((a, b) => b.username.localeCompare(a.username));
+                    this.isReverseSortedByUsername = true;
+                }
+
+                else {
+                    store.users = this.copyOfUsers;
+                    this.isSortedByUsername = this.isReverseSortedByUsername = false;
+                }
+
+                // if !sorted => sort
+                // else if !reversed => reverse
+                // else original_order
+            },
+
+            SortUsersByScore() {
+                if (!this.isSortedByScore) {
+                    store.users.sort((a, b) => b.score - a.score);
+                    this.isSortedByScore = true;
+                }
+
+                else if (!this.isReverseSortedByScore) {
+                    store.users.sort((a, b) => a.score - b.score);
+                    this.isReverseSortedByScore = true;
+                }
+
+                else {
+                    store.users = this.copyOfUsers;
+                    this.isSortedByScore = this.isReverseSortedByScore = false;
+                }
+            },
+
+
+            // fix sorting method
+
+            modifyScore: (user, op) => {
+                if (op === 'add') {
+                    if (user.score === -1) {
+                        user.score += 2;
+                    }
+                    else {
+                        user.score++;
+                    }
+                }
+                else {
+                    if (user.score === 1) {
+                        user.score -= 2;
+                    }
+                    else {
+                        user.score--;
+                    }
+                }
             }
         }
     }
@@ -109,6 +176,8 @@ import { store } from './store';
         background-color: #EDEDED;
         margin: 0;
         padding: 0;
+        width: 100%;
+		min-width: 280px;
     }
 
     input.search-bar {
@@ -116,10 +185,16 @@ import { store } from './store';
         height: 5vh;
         border: 1px solid black;
         background-color: transparent;
+		min-width: 280px;
     }
 
     .display-username {
         font-size: smaller;
         color: #ABABAB;
+    }
+
+    .table {
+        width: 100%;
+        min-width: 280px;
     }
 </style>
