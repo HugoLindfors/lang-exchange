@@ -17,11 +17,11 @@ export const store = reactive({
                     lvl: "advanced"
                 },
                 {
-                    name: "finnish",
+                    name: "finnish/suomi",
                     lvl: "intermediate"
                 },
                 {
-                    name: "german",
+                    name: "german/deutsch",
                     lvl: "intermediate"
                 },
             ]

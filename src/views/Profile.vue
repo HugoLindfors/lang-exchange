@@ -11,6 +11,7 @@ export default {
         return {
             store,
             newUsername: "username",
+            currentUser: 1,
             push: (pushMe) => {
                 alert("push");
                 router.push(pushMe)
@@ -25,9 +26,9 @@ export default {
 
 <template>
     <h1>MODIFY MY PROFILE</h1>
-    <p><input type="text" placeholder="My username..." v-model="newUsername"></p>
+    <p><input type="text" :placeholder="store.users[currentUser]" v-model="newUsername"></p>
     <h5>NATIVE LANGUAGE(S</h5>
-    <div v-for="language in store.users[0].languages.filter((language) => language.lvl === 'native')">
+    <div v-for="language in store.users[currentUser].languages.filter((language) => language.lvl === 'native')">
         {{language.name.toLocaleUpperCase()}}
     </div>
     <h5>CURRENTLY LEARNING / ALSO KNOWS</h5>
@@ -40,5 +41,15 @@ export default {
     <div v-for="language in store.users[0].languages.filter((language) => language.lvl === 'pre-intermediate' || language.lvl === 'beginner')">
         {{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})
     </div>
-    <button @click="push('/add-language')"> Add Language </button>
+    <input type="text" /><br />
+    <select>
+        <option value="native">NATIVE</option>
+        <option value="advanced">PROFICIENT</option>
+        <option value="advanced">ADVANCED</option>
+        <option value="intermediate">UPPER INTERMEDIATE</option>
+        <option value="intermediate">INTERMEDIATE</option>
+        <option value="beginner">PRE-INTERMEDIATE</option>
+        <option value="beginner">BEGINNER</option>
+    </select><br />
+    <button @click="push()"> ADD LANGUAGE </button>
 </template>

@@ -38,8 +38,8 @@ import { store } from './store';
             </tr>
         </thead>
         <tbody id="table-body" class="table-body">
-            <tr v-for="user in store.users" class="table-row table-body-row">
-                <td>
+            <tr v-for="user in store.users.filter((user) => hideNegativeScore ? user.score > 0 : user.score)" class="table-row table-body-row">
+                <td class="table-row-cell">
                     <div>
                         {{user.displayName.toLocaleUpperCase()}}    
                     </div>
@@ -47,13 +47,13 @@ import { store } from './store';
                         @{{user.username.toLocaleUpperCase()}}
                     </div>
                 </td>
-                <td>
+                <td class="table-row-cell">
                     <span v-if="!hideNegativeScore || user.score >= 0"><span>{{user.score}}</span><span><div><button @click="modifyScore(user, 'add')">+</button></div><div><button @click="modifyScore(user, 'subtract')">–</button></div></span></span>
                 </td>
-                <td v-if="showNative" class="d-none d-md-block">
+                <td v-if="showNative" class="table-row-cell d-none d-md-block">
                     <div v-for="language in user.languages.filter((language) => language.lvl === 'native')">{{language.name.toUpperCase()}}</div>
                 </td>
-                <td v-if="showAdvanced || showIntermediate || showBeginner">
+                <td v-if="showAdvanced || showIntermediate || showBeginner" class="table-row-cell">
                     <div v-if="showNative" v-for="language in user.languages.filter((language) => language.lvl === 'native')" class="d-sm-block d-md-none">{{language.name.toUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
                     <div v-if="showAdvanced" v-for="language in user.languages.filter((language) => (language.lvl === 'advanced' || language.lvl === 'proficient'))">{{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
                     <div v-if="showIntermediate" v-for="language in user.languages.filter((language) => (language.lvl === 'intermediate' || language.lvl === 'upper_intermediate'))">{{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
@@ -196,5 +196,9 @@ import { store } from './store';
     .table {
         width: 100%;
         min-width: 280px;
+    }
+
+    .table-row-cell {
+        min-height: 101px;
     }
 </style>
