@@ -7,6 +7,7 @@ import router from './router';
 const isLoggedIn = ref(false);
 
 let isAdmin = false;
+let currentUserId = "";
 
 let auth;
 onMounted(() => {
@@ -14,6 +15,9 @@ onMounted(() => {
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
 			isLoggedIn.value = true;
+			console.log(`CURRENT USER'S ID: ${user.uid}`);
+			currentUserId = user.uid;
+			console.log(`currentUserId = ${currentUserId}`)
 		}
 		else {
 			isLoggedIn.value = false;
@@ -21,13 +25,22 @@ onMounted(() => {
 	});
 });
 
-
-
 const handleSignOut = () => {
 	signOut(auth).then(() => {
 		router.push('/')
 	});
 }
+</script>
+
+<!-- parent component -->
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		}
+	}
 </script>
 
 <template>

@@ -5,13 +5,16 @@ import { useRouter } from 'vue-router'; // import router from vue-router
 const router = useRouter(); // get a reference to our vue router
 </script>
     
+<!-- child component to App.vue -->
+
 <script>
 export default {
     data() {
         return {
             store,
-            newUsername: "username",
-            currentUser: 1,
+            newUsername: "",
+            currentUserId: "",
+            currentUser: store.users.map((user) => user.id).indexOf("I5Cq4hWhrfYwhqFYoVIBRPnVTUx1"), // collects info from correct user based on id given at sign-in
             push: (pushMe) => {
                 alert("push");
                 router.push(pushMe)
@@ -19,30 +22,30 @@ export default {
         }
     },
     methods: {
-
+        
     }
 }
 </script>
 
 <template>
     <h1>MODIFY MY PROFILE</h1>
-    <p><input type="text" :placeholder="store.users[currentUser]" v-model="newUsername"></p>
-    <h5>NATIVE LANGUAGE(S</h5>
+    <p>My username: <input type="text" :placeholder="store.users[currentUser].username" v-model="newUsername" class="input-field"></p>
+    <h5>MY NATIVE LANGUAGE(S)</h5>
     <div v-for="language in store.users[currentUser].languages.filter((language) => language.lvl === 'native')">
         {{language.name.toLocaleUpperCase()}}
     </div>
-    <h5>CURRENTLY LEARNING / ALSO KNOWS</h5>
-    <div v-for="language in store.users[0].languages.filter((language) => language.lvl === 'advanced' || language.lvl === 'proficient')">
+    <h5>I'M CURRENTLY LEARNING / I ALSO KNOW</h5>
+    <div v-for="language in store.users[currentUser].languages.filter((language) => language.lvl === 'advanced' || language.lvl === 'proficient')">
         {{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})
     </div>
-    <div v-for="language in store.users[0].languages.filter((language) => language.lvl === 'intermediate' || language.lvl === 'upper_intermediate')">
+    <div v-for="language in store.users[currentUser].languages.filter((language) => language.lvl === 'intermediate' || language.lvl === 'upper_intermediate')">
         {{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})
     </div>
-    <div v-for="language in store.users[0].languages.filter((language) => language.lvl === 'pre-intermediate' || language.lvl === 'beginner')">
+    <div v-for="language in store.users[currentUser].languages.filter((language) => language.lvl === 'pre-intermediate' || language.lvl === 'beginner')">
         {{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})
     </div>
-    <input type="text" /><br />
-    <select>
+    <span>Language name: <input type="text" class="input-field"/></span>
+    <select class="input-field">
         <option value="native">NATIVE</option>
         <option value="advanced">PROFICIENT</option>
         <option value="advanced">ADVANCED</option>
@@ -50,6 +53,15 @@ export default {
         <option value="intermediate">INTERMEDIATE</option>
         <option value="beginner">PRE-INTERMEDIATE</option>
         <option value="beginner">BEGINNER</option>
-    </select><br />
-    <button @click="push()"> ADD LANGUAGE </button>
+    </select>
+    <button @click="push()" class="input-field"> ADD LANGUAGE </button>
 </template>
+
+<style scoped lang="css">
+    .input-field {
+        border: 1px solid;
+        border-radius: 15px;
+        width: 25vw;
+        height: 3vh;
+    }
+</style>

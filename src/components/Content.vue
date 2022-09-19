@@ -48,7 +48,7 @@ import { store } from './store';
                     </div>
                 </td>
                 <td class="table-row-cell">
-                    <span v-if="!hideNegativeScore || user.score >= 0"><span>{{user.score}}</span><span><div><button @click="modifyScore(user, 'add')">+</button></div><div><button @click="modifyScore(user, 'subtract')">–</button></div></span></span>
+                    <span class="score-container"><span v-if="!hideNegativeScore || user.score >= 0"><span>{{user.score}}</span><span class="score-btn-container"><span><button @click="modifyScore(user, 'add')" class="score-button pos-btn">+</button></span><span><button @click="modifyScore(user, 'subtract')" class="score-button neg-btn">–</button></span></span></span></span>
                 </td>
                 <td v-if="showNative" class="table-row-cell d-none d-md-block">
                     <div v-for="language in user.languages.filter((language) => language.lvl === 'native')">{{language.name.toUpperCase()}}</div>
@@ -200,5 +200,29 @@ import { store } from './store';
 
     .table-row-cell {
         min-height: 101px;
+    }
+
+    .score-button {
+        border-radius: 15px;
+        width: 4vh;
+        height: 4vh;
+    }
+
+    .pos-btn {
+        background-color: green;
+    }
+
+    .neg-btn {
+        background-color: red;
+    }
+
+    .score-btn-container {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .score-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 </style>
