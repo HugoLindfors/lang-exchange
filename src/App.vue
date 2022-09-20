@@ -1,47 +1,7 @@
 <script setup> //lang="js"
 import { RouterView, RouterLink } from 'vue-router'
-import { onMounted, ref } from 'vue';
-import { getAuth, onAuthStateChanged, signOut } from '@firebase/auth';
+import { getAuth, onAuthStateChanged, getRedirectResult, signOut } from '@firebase/auth';
 import router from './router';
-
-const isLoggedIn = ref(false);
-
-let isAdmin = false;
-let currentUserId = "";
-
-let auth;
-onMounted(() => {
-	auth = getAuth();
-	onAuthStateChanged(auth, (user) => {
-		if (user) {
-			isLoggedIn.value = true;
-			console.log(`CURRENT USER'S ID: ${user.uid}`);
-			currentUserId = user.uid;
-			console.log(`currentUserId = ${currentUserId}`)
-		}
-		else {
-			isLoggedIn.value = false;
-		}
-	});
-});
-
-const handleSignOut = () => {
-	signOut(auth).then(() => {
-		router.push('/')
-	});
-}
-</script>
-
-<!-- parent component -->
-<script>
-	export default {
-		props: ["currentUserIdProp"],
-		data() {
-			return {
-				
-			}
-		}
-	}
 </script>
 
 <template>
@@ -51,7 +11,7 @@ const handleSignOut = () => {
 			<RouterLink to="/admin" v-if="isLogggedIn && isAdmin" class="router-link">Admin</RouterLink>
 			<RouterLink to="/profile" v-if="isLoggedIn" class="router-link">My Profile</RouterLink>
 			<RouterLink to="/sign-in" v-if="!isLoggedIn" class="router-link right sign-in">Sign In</RouterLink>
-			<button @click="handleSignOut" v-if="isLoggedIn" class="router-link-button">Sign Out</button>
+			<button @click="handleSignOut" v-if="isLoggedIn" class="router-link-button">Sign out</button>
 		</nav>
 	</header>
 
@@ -62,7 +22,46 @@ const handleSignOut = () => {
 	</footer>
 </template>
 
-<style scoped lang="css">
+<script>
+	export default {
+		data() {
+			return {
+				isLoggedIn: false,
+				currentUserId: null,
+				currentUserDisplayName: null,
+			}
+		},
+		methods: {
+			handleSignOut() {
+				signOut(getAuth()).then(() => {
+					router.push('/')
+				});
+			}
+		},
+		created() {
+			this.currentUserId = getAuth().currentUser?.uid;
+			console.log(getAuth().currentUser?.uid);
+			if (this.currentUserId) {
+				this.isLoggedIn = true;
+			}
+			
+			onAuthStateChanged(getAuth(), user => {
+				if (user) {
+					this.isLoggedIn = true;
+					this.currentUserId = user.uid;
+				}
+
+				else {
+					this.isLoggedIn = false;
+					this.currentUserId = null;
+					this.currentUserDisplayName = null;
+				}
+			});
+		}
+	}
+</script>
+
+<style scoped>
 	.navbar {
 		background-color: #389683;
 		color: white;
