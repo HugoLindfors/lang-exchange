@@ -43,8 +43,8 @@ const signInWithGoogle = () => {
     <div class="register">
         <h1>Create an account</h1>
         <p>Already have an account? <a @click="router.push('/sign-in')">Sign In</a></p>
-        <p><input type="text" name="first-name" id="first-name" placeholder="First Name" v-model="email" class="sign-in-element"></p> <!-- email -->
-        <p><input type="text" name="last-name" id="last-name" placeholder="Last Name" v-model="password" class="sign-in-element"></p>
+        <p><input type="text" name="first-name" id="first-name" placeholder="First Name" v-model="fname" class="sign-in-element"></p> <!-- email -->
+        <p><input type="text" name="last-name" id="last-name" placeholder="Last Name" v-model="lname" class="sign-in-element"></p>
         <p><input type="text" name="email" id="email" placeholder="Email" v-model="email" class="sign-in-element"></p> <!-- email -->
         <p><input type="password" name="password" id="password" placeholder="Password" v-model="password" class="sign-in-element"></p>
         <!-- password -->

@@ -13,8 +13,7 @@ export default {
         return {
             store,
             newUsername: "",
-            currentUserId: "",
-            currentUser: store.users.map((user) => user.id).indexOf("I5Cq4hWhrfYwhqFYoVIBRPnVTUx1"), // collects info from correct user based on id given at sign-in
+            currentUser: store.users.map((user) => user.id).indexOf(currentUserId), // collects info from correct user based on id given at sign-in
             push: (pushMe) => {
                 alert("push");
                 router.push(pushMe)
@@ -25,6 +24,8 @@ export default {
         
     }
 }
+
+let currentUserId = "I5Cq4hWhrfYwhqFYoVIBRPnVTUx1";
 </script>
 
 <template>
@@ -33,16 +34,20 @@ export default {
     <h5>MY NATIVE LANGUAGE(S)</h5>
     <div v-for="language in store.users[currentUser].languages.filter((language) => language.lvl === 'native')">
         {{language.name.toLocaleUpperCase()}}
+        <button class="remove-language-button"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Trash_Can.svg" alt="Delete" class="svg"/></button><button class="edit-language-button"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Pen_1.svg" alt="Change" class="svg"/></button>
     </div>
     <h5>I'M CURRENTLY LEARNING / I ALSO KNOW</h5>
     <div v-for="language in store.users[currentUser].languages.filter((language) => language.lvl === 'advanced' || language.lvl === 'proficient')">
         {{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})
+        <button class="remove-language-button"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Trash_Can.svg" alt="Delete" class="svg"/></button><button class="edit-language-button"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Pen_1.svg" alt="Change" class="svg"/></button>
     </div>
     <div v-for="language in store.users[currentUser].languages.filter((language) => language.lvl === 'intermediate' || language.lvl === 'upper_intermediate')">
         {{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})
+        <button class="remove-language-button"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Trash_Can.svg" alt="Delete" class="svg"/></button><button class="edit-language-button"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Pen_1.svg" alt="Change" class="svg"/></button>
     </div>
     <div v-for="language in store.users[currentUser].languages.filter((language) => language.lvl === 'pre-intermediate' || language.lvl === 'beginner')">
         {{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})
+        <button class="remove-language-button"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Trash_Can.svg" alt="Delete" class="svg"/></button><button class="edit-language-button"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Pen_1.svg" alt="Change" class="svg"/></button>
     </div>
     <span>Language name: <input type="text" class="input-field"/></span>
     <select class="input-field">
@@ -63,5 +68,21 @@ export default {
         border-radius: 15px;
         width: 25vw;
         height: 3vh;
+    }
+
+    .remove-language-button {
+        border: 1px solid;
+        background-color: red;
+        width: 5vh;
+        height: 4vh;
+        border-radius: 15px;
+    }
+
+    .edit-language-button {
+        border: 1px solid;
+        background-color: blue;
+        width: 5vh;
+        height: 4vh;
+        border-radius: 15px;
     }
 </style>

@@ -35,6 +35,7 @@ const handleSignOut = () => {
 <!-- parent component -->
 <script>
 	export default {
+		props: ["currentUserIdProp"],
 		data() {
 			return {
 				
