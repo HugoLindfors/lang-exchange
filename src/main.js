@@ -10,33 +10,47 @@ import './main.css'
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { 
+	getFirestore, 
+	collection, 
+	getDocs } from 'firebase/firestore/lite';
 
-// Your web app's Firebase configuration
+// your web app's firebase configuration
 
-const firebaseConfig = {
-  apiKey: "AIzaSyC73oVAbqSAWb6iMbB_bdr_sXUNAdb0qyQ",
-  authDomain: "lang-exchange-2a4fc.firebaseapp.com",
-  projectId: "lang-exchange-2a4fc",
-  storageBucket: "lang-exchange-2a4fc.appspot.com",
-  messagingSenderId: "264989986369",
-  appId: "1:264989986369:web:5fb5c160b0e4565baa00c0"
+const FIREBASE_CONFIG = {
+	apiKey: "AIzaSyC73oVAbqSAWb6iMbB_bdr_sXUNAdb0qyQ",
+	authDomain: "lang-exchange-2a4fc.firebaseapp.com",
+	projectId: "lang-exchange-2a4fc",
+	storageBucket: "lang-exchange-2a4fc.appspot.com",
+	messagingSenderId: "264989986369",
+	appId: "1:264989986369:web:5fb5c160b0e4565baa00c0"
 };
 
-// Initialize FireBase
-const firebaseApp = initializeApp(firebaseConfig);
-const db = getFirestore(firebaseApp);
+// initialize firebase
+const FIREBASE_APP = initializeApp(FIREBASE_CONFIG);
+const DB = getFirestore(FIREBASE_APP);
+
+// collection reference
+const COL_REF = collection(DB, 'users')
+
+// get collection data
+getDocs(COL_REF)
+	.then((snapshot) => {
+		let users = [];
+		snapshot.docs.forEach((doc) => {
+			users.push({ ...doc.data(), id: doc.id })
+		})
+		console.log(users);
+	})
+	.catch((error) => {
+		alert(error.message);
+		console.log(`ERROR: ${error.code}`);
+	})
 
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-const app = createApp(App);
+const APP = createApp(App);
 
-app.use(router);
+APP.use(router);
 
-app.mount('#app')
-
-export const store = reactive({
-  users: [
-      
-  ],
-})
+APP.mount('#app')

@@ -7,6 +7,12 @@ export const store = reactive({
             username: "hugo.lindfors",
             displayName: "Hugo Lindfors",
             score: -1,
+            contact: [
+                {
+                    place: "discord",
+                    username: "Neutron#9334",
+                }
+            ],
             languages: [
                 {
                     name: "swedish/svenska",
@@ -31,6 +37,12 @@ export const store = reactive({
             username: "sebastian.jensen",
             displayName: 'Sebastian Jensen',
             score: 1,
+            contact: [
+                {
+                    place: "discord",
+                    username: "Sebastian.Jensen#9648",
+                }
+            ],
             languages: [
                 {
                     name: "swedish/svenska",
@@ -55,6 +67,12 @@ export const store = reactive({
             username: "hugo.lindfors.2",
             displayName: "Hugo Lindfors",
             score: -1,
+            contact: [
+                {
+                    place: "email",
+                    username: "hugo.lindfors@elev.ga.ntig.se",
+                }
+            ],
             languages: [
                 {
                     name: "swedish/svenska",

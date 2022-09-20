@@ -35,6 +35,9 @@ import { store } from './store';
                     <span class="d-none d-md-block">CURRENTLY LEARNING / ALSO KNOWS</span>
                     <span class="d-sm-block d-md-none">LANGUAGES</span>
                 </th>
+                <th class="table-row-cell d-none d-md-block">
+                    OTHER PLATFORMS
+                </th>
             </tr>
         </thead>
         <tbody id="table-body" class="table-body">
@@ -45,6 +48,9 @@ import { store } from './store';
                     </div>
                     <div class="display-username">
                         @{{user.username.toLocaleUpperCase()}}
+                    </div>
+                    <div class="d-sm-block d-md-none">
+                        <span v-for="contac in user.contact">{{contac.place.toUpperCase()}}: {{contac.username.toUpperCase()}}</span>
                     </div>
                 </td>
                 <td class="table-row-cell">
@@ -58,6 +64,9 @@ import { store } from './store';
                     <div v-if="showAdvanced" v-for="language in user.languages.filter((language) => (language.lvl === 'advanced' || language.lvl === 'proficient'))">{{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
                     <div v-if="showIntermediate" v-for="language in user.languages.filter((language) => (language.lvl === 'intermediate' || language.lvl === 'upper_intermediate'))">{{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
                     <div v-if="showBeginner" v-for="language in user.languages.filter((language) => (language.lvl === 'pre-intermediate' || language.lvl === 'beginner'))">{{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
+                </td>
+                <td class="table-row-cell d-none d-md-block">
+                    <span v-for="contac in user.contact">{{contac.place.toUpperCase()}}: {{contac.username.toUpperCase()}}</span>
                 </td>
             </tr>
         </tbody>
