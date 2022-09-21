@@ -1,5 +1,5 @@
 <script setup>
-import { store } from './store';
+import { store } from '../main';
 </script>
 
 <template>
@@ -22,20 +22,20 @@ import { store } from './store';
     <table id="table" class="table">
         <thead id="table-head" class="table-head">
             <tr id="table-head-row" class="table-row table-head-row">
-                <th @click="SortUsersByUsername()">
+                <th @click="SortUsersByUsername()" class="table-head-row-cell">
                    NAME 
                 </th>
-                <th @click="SortUsersByScore()">
+                <th @click="SortUsersByScore()" class="table-head-row-cell">
                     SCORE
                 </th>
-                <th v-if="showNative" class="d-none d-md-block">
+                <th v-if="showNative" class="table-head-row-cell d-none d-md-block">
                     NATIVE LANGUAGE(S)
                 </th>
-                <th v-if="showAdvanced || showIntermediate || showBeginner">
+                <th v-if="showAdvanced || showIntermediate || showBeginner" class="table-head-row-cell">
                     <span class="d-none d-md-block">CURRENTLY LEARNING / ALSO KNOWS</span>
                     <span class="d-sm-block d-md-none">LANGUAGES</span>
                 </th>
-                <th class="table-row-cell d-none d-md-block">
+                <th class="table-head-row-cell d-none d-md-block">
                     OTHER PLATFORMS
                 </th>
             </tr>
@@ -66,7 +66,7 @@ import { store } from './store';
                     <div v-if="showBeginner" v-for="language in user.languages.filter((language) => (language.lvl === 'pre-intermediate' || language.lvl === 'beginner'))">{{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
                 </td>
                 <td class="table-row-cell d-none d-md-block">
-                    <span v-for="contac in user.contact">{{contac.place.toUpperCase()}}: {{contac.username.toUpperCase()}}</span>
+                    <span v-for="contac in user.contactMethods">{{contac.platform.toUpperCase()}}: {{contac.username.toUpperCase()}}</span>
                 </td>
             </tr>
         </tbody>
@@ -208,7 +208,7 @@ import { store } from './store';
     }
 
     .table-row-cell {
-        min-height: 101px;
+        min-height: 200px;
     }
 
     .score-button {

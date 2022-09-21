@@ -3,6 +3,14 @@ import App from './App.vue'
 import router from './router'
 import './main.css'
 
+import { reactive } from "vue";
+
+export const store = reactive({
+    users: [
+
+	]
+})
+
 // FireBase 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
 // Import the functions you need from the SDKs you need
@@ -36,14 +44,12 @@ const COL_REF = collection(DB, 'users')
 // get collection data
 getDocs(COL_REF)
 	.then((snapshot) => {
-		let users = [];
 		snapshot.docs.forEach((doc) => {
-			users.push({ ...doc.data(), id: doc.id })
+			store.users.push({ ...doc.data(), id: doc.id })
 		})
-		console.log(users);
+		console.log(store.users);
 	})
 	.catch((error) => {
-		alert(error.message);
 		console.log(`ERROR: ${error.code}`);
 	})
 

@@ -1,5 +1,5 @@
 <script setup>
-import { store } from '../components/store';
+import { store } from '../main';
 import { useRouter } from 'vue-router'; // import router from vue-router
 import { getAuth } from '@firebase/auth';
 
