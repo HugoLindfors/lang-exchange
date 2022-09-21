@@ -67,7 +67,7 @@ import router from './router';
 		color: white;
 		height: 5vh;
 		width: 100%;
-		min-width: 280px;
+		min-width: 320px;
 	}
 
 	.navbar .router-link {

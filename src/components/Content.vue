@@ -186,7 +186,7 @@ import { store } from '../main';
         margin: 0;
         padding: 0;
         width: 100%;
-		min-width: 280px;
+		min-width: 320px;
     }
 
     input.search-bar {
@@ -194,7 +194,7 @@ import { store } from '../main';
         height: 5vh;
         border: 1px solid black;
         background-color: transparent;
-		min-width: 280px;
+		min-width: 320px;
     }
 
     .display-username {
@@ -204,7 +204,6 @@ import { store } from '../main';
 
     .table {
         width: 100%;
-        min-width: 280px;
     }
 
     .table-row-cell {
