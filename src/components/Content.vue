@@ -10,13 +10,13 @@ import { store } from '../main';
     </div>
     <div class="filter">
         <div class="lvl-filter">
-            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('native', showNative)" name="showNative" v-model="showNative" checked /> NATIVE <!--Follows the standard scale of linguistics: A0 - total beginner, A1 - beginner, A2 - pre-intermediate, B1 - intermediate, B2 - upper intermediate, C1 - advanced, C2 - proficient and native -->
-            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('advanced', showAdvanced)" name="showAdvanced" v-model="showAdvanced" checked /> ADVANCED
-            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('intermediate', showIntermediate)" name="showIntermediate" v-model="showIntermediate" checked /> INTERMEDIATE
-            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('beginner', showBeginner)" name="showNative" v-model="showBeginner" checked /> BEGINNER
+            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('native', showNative)" id="show-native" name="show-native" v-model="showNative" checked /> <label for="show-native">NATIVE</label> <!--Follows the standard scale of linguistics: A0 - total beginner, A1 - beginner, A2 - pre-intermediate, B1 - intermediate, B2 - upper intermediate, C1 - advanced, C2 - proficient and native -->
+            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('advanced', showAdvanced)" id="show-advanced" name="show-advanced" v-model="showAdvanced" checked /> <label for="show-advanced">ADVANCED</label>
+            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('intermediate', showIntermediate)" id="show-intermediate" name="show-intermediate" v-model="showIntermediate" checked /> <label for="show-intermediate">INTERMEDIATE</label>
+            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('beginner', showBeginner)" id="show-beginner" name="show-beginner" v-model="showBeginner" /> <label for="show-beginner">BEGINNER</label>
         </div>
         <div class="score-filter">
-            <input type="checkbox" v-model="hideNegativeScore" /> HIDE NEGATIVE SCORES
+            <input type="checkbox" v-model="hideNegativeScore" name="hide-negative-scores" id="hide-negative-scores"/> <label for="hide-negative-scores">HIDE NEGATIVE SCORES</label>
         </div>
     </div>
     <table id="table" class="table">
@@ -84,7 +84,7 @@ import { store } from '../main';
                 showNative: true,
                 showAdvanced: true,
                 showIntermediate: true,
-                showBeginner: true,
+                showBeginner: false,
                 hideNegativeScore: false,
                 filteredUsers: [...store.users],
                 sortedUsers: [...store.users],
@@ -128,7 +128,6 @@ import { store } from '../main';
                 }
 
                 else {
-                    store.users = this.copyOfUsers;
                     this.isSortedByUsername = this.isReverseSortedByUsername = false;
                 }
 
@@ -149,7 +148,6 @@ import { store } from '../main';
                 }
 
                 else {
-                    store.users = this.copyOfUsers;
                     this.isSortedByScore = this.isReverseSortedByScore = false;
                 }
             },
@@ -217,11 +215,11 @@ import { store } from '../main';
     }
 
     .pos-btn {
-        background-color: green;
+        background-color: darkgreen;
     }
 
     .neg-btn {
-        background-color: red;
+        background-color: darkred;
     }
 
     .score-btn-container {

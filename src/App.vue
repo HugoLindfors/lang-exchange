@@ -63,7 +63,7 @@ import router from './router';
 
 <style scoped>
 	.navbar {
-		background-color: #389683;
+		background-color: #278572;
 		color: white;
 		height: 5vh;
 		width: 100%;
