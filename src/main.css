@@ -18,3 +18,8 @@ body {
     align-items: center;
     justify-items: center;
 }
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+}

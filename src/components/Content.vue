@@ -10,13 +10,13 @@ import { store } from '../main';
     </div>
     <div class="filter">
         <div class="lvl-filter">
-            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('native', showNative)" id="show-native" name="show-native" v-model="showNative" checked /> <label for="show-native">NATIVE</label> <!--Follows the standard scale of linguistics: A0 - total beginner, A1 - beginner, A2 - pre-intermediate, B1 - intermediate, B2 - upper intermediate, C1 - advanced, C2 - proficient and native -->
-            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('advanced', showAdvanced)" id="show-advanced" name="show-advanced" v-model="showAdvanced" checked /> <label for="show-advanced">ADVANCED</label>
-            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('intermediate', showIntermediate)" id="show-intermediate" name="show-intermediate" v-model="showIntermediate" checked /> <label for="show-intermediate">INTERMEDIATE</label>
-            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('beginner', showBeginner)" id="show-beginner" name="show-beginner" v-model="showBeginner" /> <label for="show-beginner">BEGINNER</label>
+            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('native', showNative)" id="show-native" name="show-native" v-model="showNative" checked class="checkbox"/> <label for="show-native">NATIVE</label> <!--Follows the standard scale of linguistics: A0 - total beginner, A1 - beginner, A2 - pre-intermediate, B1 - intermediate, B2 - upper intermediate, C1 - advanced, C2 - proficient and native -->
+            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('advanced', showAdvanced)" id="show-advanced" name="show-advanced" v-model="showAdvanced" checked class="checkbox"/> <label for="show-advanced">ADVANCED</label>
+            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('intermediate', showIntermediate)" id="show-intermediate" name="show-intermediate" v-model="showIntermediate" checked class="checkbox"/> <label for="show-intermediate">INTERMEDIATE</label>
+            <input type="checkbox" @click="Search(), DisplayLanguageGrouping('beginner', showBeginner)" id="show-beginner" name="show-beginner" v-model="showBeginner" class="checkbox"/> <label for="show-beginner">BEGINNER</label>
         </div>
         <div class="score-filter">
-            <input type="checkbox" v-model="hideNegativeScore" name="hide-negative-scores" id="hide-negative-scores"/> <label for="hide-negative-scores">HIDE NEGATIVE SCORES</label>
+            <input type="checkbox" v-model="hideNegativeScore" name="hide-negative-scores" id="hide-negative-scores" class="checkbox" /> <label for="hide-negative-scores">HIDE NEGATIVE SCORES</label>
         </div>
     </div>
     <table id="table" class="table">
