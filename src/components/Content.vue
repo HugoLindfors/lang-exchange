@@ -66,7 +66,7 @@ import { store } from '../main';
                     <div v-if="showBeginner" v-for="language in user.languages.filter((language) => (language.lvl === 'pre-intermediate' || language.lvl === 'beginner'))">{{language.name.toLocaleUpperCase()}} ({{language.lvl.toLocaleUpperCase()}})</div>
                 </td>
                 <td class="table-row-cell d-none d-md-block">
-                    <span v-for="contac in user.contactMethods">{{contac.platform.toUpperCase()}}: {{contac.username.toUpperCase()}}</span>
+                    <div v-for="contac in user.contactMethods">{{contac.platform.toUpperCase()}}: {{contac.username.toUpperCase()}}</div>
                 </td>
             </tr>
         </tbody>
